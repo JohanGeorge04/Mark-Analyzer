@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Main Page</title>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+   
+    
+       
+
+    <body>
+
+        <section id="header">
+            <a href="/"><img src="logo2.png"></a>
+
+            <div>
+                <ul id="navbar">
+                    <% if(!faculty){ %>
+                    <% if(user){ %>
+                      <li><a  readonly href="/">Dashboard</a></li>
+                        <li><a class="active" href="result">Result</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                        <li><a readonly><%= user.Name %></a></li>
+                        <% }else{ %>
+                        <li><a href="login">Sign-In</a></li>
+                        <% } %>
+                        <% } %>
+                       
+                </ul>
+            </div>
+        </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+       
+       
+        <% if(!faculty){ %>
+        <% if(user){ %>
+          
+          
+        <section id="marks">
+          
+           
+          <div class = "result"> 
+              <div class = "al1 "> 
+             
+            
+                
+                <h2 style=margin-top:50px;>Assesment 1</h2>
+                <table style="width:500px">
+                    <thead>
+                      <tr>
+                        <th>Course ID</th>
+                        <th>Course</th>
+                        <th>Marks</th>
+                        <th>Class average</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i<data.length; i++) {%>
+                           <% if(user.Student_ID==data[i].SID) {%>
+                        <tr>
+                          <td><%=data[i].CID%></td>
+                          <td><%=data[i].Course_Name%></td>                         
+                          <td><%=data[i].Mark1%></td> 
+                          <td><%=data[i].avg1%></td>                                                
+                        </tr>
+                        <% } %>
+                        <% } %>
+                      </tbody>
+                  </table>
+                      
+             
+                <h2 style=margin-top:50px;>Assesment 2</h2>
+                <table style="width:500px;">
+                    <thead>
+                      <tr>
+                        <th>Course ID</th>
+                        <th>Course</th>
+                        <th>Marks</th>
+                        <th>Class average</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i<data.length; i++) {%>
+                           <% if(user.Student_ID==data[i].SID) {%>
+                        <tr>
+                          <td><%=data[i].CID%></td>
+                          <td><%=data[i].Course_Name%></td>                         
+                          <td><%=data[i].Mark2%></td>
+                          <td><%=data[i].avg2%></td> 
+                        </tr>
+                        <% } %>
+                        <% } %>
+                      </tbody>
+                  </table>
+                  
+            
+                <h2 style=margin-top:50px;>Assesment 3</h2>
+                <table style="width:500px">
+                    <thead>
+                      <tr>
+                        <th>Course ID</th>
+                        <th>Course</th>
+                        <th>Marks</th>
+                        <th>Class average</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i<data.length; i++) {%>
+                           <% if(user.Student_ID==data[i].SID) {%>
+                        <tr>
+                          <td><%=data[i].CID%></td>
+                          <td><%=data[i].Course_Name%></td>                         
+                          <td><%=data[i].Mark3%></td>
+                          <td><%=data[i].avg3%></td> 
+                        </tr>
+                        <% } %>
+                        <% } %>
+                      </tbody>
+                  </table>
+             
+              
+                <h2 style=margin-top:50px;>Assesment 4</h2>
+                <table style="width:500px">
+                    <thead>
+                      <tr>
+                        <th>Course ID</th>
+                        <th>Course</th>
+                        <th>Marks</th>
+                        <th>Class average</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i<data.length; i++) {%>
+                           <% if(user.Student_ID==data[i].SID) {%>
+                        <tr>
+                          <td><%=data[i].CID%></td>
+                          <td><%=data[i].Course_Name%></td>                        
+                          <td><%=data[i].Mark4%></td>
+                          <td><%=data[i].avg4%></td> 
+                        </tr>
+                        <% } %>
+                        <% } %>
+                      </tbody>
+                  </table>
+              </div>
+              
+
+           
+            <div class ="ar1">
+              <canvas id="myChart" style="width:50%;max-width:500px; margin-top: 100px;"></canvas>
+              <script> 
+              var u = "<%= user.Student_ID %>";                 
+             
+                var data1 = JSON.parse('<%- JSON.stringify(data1) %>');
+                const xValues = [];                 
+                  for (var i = 0; i < data1.length; i++) {
+                    xValues.push(  data1[i].Course_Name );
+                  }               
+                  var data = JSON.parse('<%- JSON.stringify(data) %>');
+                  var yValues1 = [];
+                  var yValues2 = [];
+                  var yValues3 = [];
+                  var yValues4 = [];
+                  for (var i = 0; i < data.length; i++) {
+                  
+                   if(data[i].SID==u)
+                    {
+                    yValues1.push(data[i].Mark1 );
+                    yValues2.push( data[i].Mark2 );
+                    yValues3.push( data[i].Mark3 );
+                    yValues4.push( data[i].Mark4 );
+                  }
+                }
+                  new Chart("myChart", {
+                    type: "line",
+                    data: {
+                      labels: xValues,
+                      datasets: [
+                        {
+                          label:"mark1",
+                          data: yValues1,
+                          borderColor: "red",
+                          backgroundColor:"red",
+                          fill: false,
+                          
+                        },
+                        {
+                          label:'mark2',
+                          data: yValues2,
+                          borderColor: "green",
+                          backgroundColor:"green",
+                          fill: false,
+                        },
+                        {
+                          label:"mark3",
+                          data: yValues3,
+                          borderColor: "blue",
+                          backgroundColor:"blue",
+                          fill: false,
+                        },
+                        {
+                          label:"mark4",
+                          data: yValues4,
+                          borderColor: "orange",
+                          backgroundColor:"orange",
+                          fill: false,
+                        },
+                      ],
+                    },
+                    options: {
+                      title: {
+                            display: true,
+                            text: "Growth Chart"
+                          },
+                      legend: { display: true },
+                    },
+                  
+                });
+              </script>
+                
+                
+              </div>        
+          </div>       
+            </section>
+            <% } %> 
+            <% } %>
+           
+        
+       
+
+
+        <footer class="section-p1">
+            <div class="col">
+                <img class="logo" src="img/logo.png" alt="">
+                <h4>Contact</h4>
+                <p><strong>Address :</strong> Saint Gits, Thiruvalla, Kerala</p>
+                <p><strong>Phone :</strong> +91 96050 97334</p>
+                <p><strong>Hours :</strong>10:00 - 18:00, Mon - Sat</p>
+                <div class="follow">
+                    <h4>Follow Us</h4>
+                    <div class="icon">
+                        <i class="fab fa-facebook"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-pinterest"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <h4>About</h4>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Help</a>
+            </div>
+
+            <div class="copyright">
+                <p>© 2022, Saint Gits - Project</p>
+            </div>
+        </footer>
+
+        <script>
+
+        </script>
+
+    </body>
+
+</html>

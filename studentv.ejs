@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Main Page</title>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+    <body>
+
+        <section id="header">
+            <a href="/"><img src="logo2.png"></a>
+
+            <div>
+                <ul id="navbar">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="logout">Logout</a></li>
+                </ul>
+            </div>
+        </section>
+        <h2>Student Information</h2>
+        <section id="marks" >
+            <div class="result">
+                <div style="overflow-x: auto;"></div>
+                
+               
+                 
+                    <style>
+                        table {
+                          border-collapse: collapse;
+                          width: 100%;
+                         
+                          
+                        }
+                        
+                        th, td {
+                          padding: 8px;
+                          text-align: left;
+                          border-bottom: 1px solid #ddd;
+                        }
+                        </style>
+                       
+                        
+                      
+                     
+                        
+                        <table >
+                          <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            
+                          <th>Gender</th>
+                          <th>Email</th>
+                          <th>Department</th>
+                          <th>Semester</th>
+                          <th>Delete/modify</th>
+                         
+                          </tr>
+                         
+                      <% for(var i=0; i<data.length; i++) {%>
+                       
+                      <tr>
+                        <td><%=data[i].Student_ID%></td>
+                        <td><%=data[i].FiName%> <%=data[i].LaName%></td>                                                      
+                        <td><%=data[i].Gender%></td>  
+                        <td><%=data[i].Email%></td>          
+                        <td><%=data[i].Department%></td>  
+                        <td><%=data[i].Semester%></td>  
+                        
+                           
+                                    <td> <button onclick="deleteRow(this,'<%= data[i].Student_ID%>')">Delete</button> </td>                
+                      </tr>
+                      <% } %>
+                        </table>
+                         
+                        <script>
+                          function deleteRow(button, studentID) {
+                            // Create a new XMLHttpRequest object
+                            var xhr = new XMLHttpRequest();
+                        
+                            // Configure the HTTP request (method, URL, asynchronous flag)
+                            xhr.open('DELETE', `/api/deleteStudent/${studentID}`, true);
+                        
+                            // Set up a callback function for when the request completes
+                            xhr.onload = function () {
+                              if (xhr.status >= 200 && xhr.status < 300) {
+                                // If the deletion is successful, remove the row from the table
+                                var row = button.parentNode.parentNode;
+                                row.parentNode.removeChild(row);
+                              } else {
+                                // Handle the error case if needed
+                                console.error('Failed to delete the student record.');
+                              }
+                            };
+                        
+                            // Set up a callback function for network errors
+                            xhr.onerror = function () {
+                              console.error('Error occurred while deleting the student record:', xhr.statusText);
+                            };
+                        
+                            // Send the HTTP request
+                            xhr.send();
+                          }
+                        </script>
+                </div>
+            </div>
+           
+           
+        </section>
+
+
+        <footer class="section-p1">
+            <div class="col">
+                <img class="logo" src="img/logo.png" alt="">
+                <h4>Contact</h4>
+                <p><strong>Address :</strong> SaintGits, Thiruvalla, Kerala</p>
+                <p><strong>Phone :</strong> +91 96050 97334</p>
+                <p><strong>Hours :</strong>10:00 - 18:00, Mon - Sat</p>
+                <div class="follow">
+                    <h4>Follow Us</h4>
+                    <div class="icon">
+                        <i class="fab fa-facebook"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-pinterest"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <h4>About</h4>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Help</a>
+            </div>
+
+            <div class="copyright">
+                <p>© 2022, SaintGits - Project</p>
+            </div>
+        </footer>
+
+        <!-- <script>
+            var su=document.getElementById("su");
+            var si=document.getElementById("si");
+            var trans=document.getElementById("top");
+            var s=document.getElementById("signup");
+            su.onclick = function(){
+                trans.style.left="406px";
+                trans.style.borderTopLeftRadius = "1pc";
+                trans.style.borderBottomLeftRadius = "1pc";
+                trans.style.borderTopRightRadius = "0";
+                trans.style.borderBottomRightRadius = "0";
+                trans.style.transition = "0.6s ease";
+            };
+            si.onclick = function(){
+                trans.style.left="706px";
+                trans.style.borderTopLeftRadius = "0";
+                trans.style.borderBottomLeftRadius = "0";
+                trans.style.borderTopRightRadius = "1pc";
+                trans.style.borderBottomRightRadius = "1pc";
+            };
+
+        </script> -->
+
+    </body>
+
+</html>

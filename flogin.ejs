@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Faculty Login</title>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+    <body>
+
+        <section id="header">
+            <a href="/"><img src="logo2.png"></a>
+
+            <div>
+                <ul id="navbar">
+                    <li><a href="/">Home</a></li>
+                    <li><a readonly href="login">Student Sign-In</a></li>
+                    <li><a class="active" readonly href="flogin">Faculty Sign-In</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="flogin" class="section-p1">
+            <h3>Faculty login</h3>
+            <div class="main">
+                <div class="sign-in" id="bottom">
+                    <form method="post" action="/fsign_in">
+                    <span>User ID</span>
+                    <input type="text" placeholder="User ID" id="uname" name="uname" required>
+                    <span>Password</span>
+                    <input type="password" id="pass" name="pass" required>
+                    <input type="submit" class="submit" value="Login" style="font-size: 12px;
+                    font-weight: 500;
+                    width: 65px;
+                    height: 30px;
+                    padding: 2px 4px;
+                    opacity: 0.6;
+                    transition: 0.4s ease;
+                    margin-top: 9px;
+                    margin-bottom: 18px;
+                    background-color: #dfe8e8;">
+                    <!-- </form>
+                    <p>Dont have an account?</p>
+                    <button class="su normal" id="su"><i>Sign Up</i></button>
+                    </div>
+                <div class="sign-up" id="bottom">
+                    <form action="/fsign_up" method="post">
+                    <span>User ID</span>
+                    <input type="text" placeholder="User ID" id="uname" name="uname" required>
+                    <p></p>
+                    <span>E-mail</span>
+                    <input type="text" placeholder="E-mail ID" id="email" name="email" required>
+                    <p></p>
+                    <span>Password</span>
+                    <input type="password" id="pass" name="pass" pattern="(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}" required>
+                    <p></p>
+                    <span>Confirm Password</span>
+                    <input type="password" id="pass" required>
+                    <p></p>
+                    <input type="submit" class="submit" value="Sign-Up" style="font-size: 12px;
+                    font-weight: 500;
+                    width: 65px;
+                    height: 30px;
+                    padding: 2px 4px;
+                    opacity: 0.6;
+                    transition: 0.4s ease;
+                    margin-top: 9px;
+                    margin-bottom: 18px;
+                    background-color: #dfe8e8;">
+                </div> -->
+            </div>
+        </div>
+            <div class="trans" id="top"></div>
+        </section>
+
+   
+
+
+        <footer class="section-p1">
+            <div class="col">
+                <img class="logo" src="img/logo.png" alt="">
+                <h4>Contact</h4>
+                <p><strong>Address :</strong> Saint Gits, Thiruvalla, Kerala</p>
+                <p><strong>Phone :</strong> +91 96050 97334</p>
+                <p><strong>Hours :</strong>10:00 - 18:00, Mon - Sat</p>
+                <div class="follow">
+                    <h4>Follow Us</h4>
+                    <div class="icon">
+                        <i class="fab fa-facebook"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-pinterest"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <h4>About</h4>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Help</a>
+            </div>
+
+            <div class="copyright">
+                <p>© 2023, Saint Gits - Project</p>
+            </div>
+        </footer>
+
+        <!-- <script>
+            var su=document.getElementById("su");
+            var si=document.getElementById("si");
+            var trans=document.getElementById("top");
+            var s=document.getElementById("signup");
+            su.onclick = function(){
+                trans.style.left="406px";
+                trans.style.borderTopLeftRadius = "1pc";
+                trans.style.borderBottomLeftRadius = "1pc";
+                trans.style.borderTopRightRadius = "0";
+                trans.style.borderBottomRightRadius = "0";
+                trans.style.transition = "0.6s ease";
+            };
+            si.onclick = function(){
+                trans.style.left="706px";
+                trans.style.borderTopLeftRadius = "0";
+                trans.style.borderBottomLeftRadius = "0";
+                trans.style.borderTopRightRadius = "1pc";
+                trans.style.borderBottomRightRadius = "1pc";
+            };
+
+        </script> -->
+
+    </body>
+
+</html>

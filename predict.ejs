@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+<head>
+    <title>Mark Prediction</title>
+</head>
+<body>
+    <h1>Mark Prediction</h1>
+
+    <table id="valuesTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          
+                            
+          <th>Mark1</th>                         
+          <th>Mark2</th>                         
+          <th>Mark3</th>                        
+          <th>Mark4</th> 
+          <th>Predicted final marks</th>                    
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0; i<data.length; i++) {%>
+        <tr>
+          <td><%=data[i].SID%></td>
+         
+                           
+          <td><%=data[i].Mark1%></td>                         
+          <td><%=data[i].Mark2%></td>                         
+          <td><%=data[i].Mark3%></td>                        
+          <td><%=data[i].Mark4%></td>  
+          <td><%=data1[i]%></td>        
+        </tr>
+        <% } %>
+      </tbody>
+    </table> 
+       
+   <script>
+    // Replace this sample data with the actual variable containing your values
+    const sampleData = data1;
+
+    // Split the values into an array using ',' as the separator
+    const valuesArray = sampleData.split(',');
+
+    // Get the table body element to append rows
+    const tableBody = document.querySelector("#valuesTable tbody");
+
+    // Loop through the values and create table rows
+    for (const value of valuesArray) {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.textContent = value;
+        row.appendChild(cell);
+        tableBody.appendChild(row);
+    }
+</script>
+</body>
+</html>

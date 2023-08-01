@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width-device-width, initial-scale=1.0">
+      <title>Main Page</title>
+      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+      <link rel="stylesheet" href="style.css">
+      
+      
+
+  </head>
+  <%
+var passCount = 0;
+var failCount = 0;
+var totalCount = 0;
+var s1=0,s2=0,s3=0,s4=0,s5=0,s6=0,s7;
+%>
+  
+  <body>
+
+      <section id="header">
+          <a href="/"><img src="logo2.png"></a>
+
+          <div>
+              <ul id="navbar">
+                 
+                  <% if(faculty){ %>
+                  <% if(user){ %>
+                    <li><a class="active" readonly href="/">Dashboard</a></li>
+                      <li><a href="course">Course Details</a></li>
+                      <li><a href="courseselect">Assesment Marks</a></li>
+                  <li><a href="fresult">Publish Result</a></li>
+                  <li><a href="/logout">Logout</a></li>
+                  <li><a readonly><%= user.FName %></a></li>
+                      <% }else{ %>
+                        <li><a href="login">Student Sign-In</a></li>
+                        <li><a href="flogin">Faculty Sign-In</a></li>
+                      <% } %>
+                      <% } %>
+                     
+              </ul>
+          </div>           
+      </section>    
+     
+      
+      <% if(faculty){ %>
+      <% if(user){ %>         
+        
+                <section id="ass"style="margin-bottom: 100px;">
+                  <div class = "assesment">
+                    <div class="al"> 
+                   
+                      <h2>Analysed Result</h2>
+                  <table style="width:500px">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>                          
+                        <th>Mark</th>    
+                        <th>Grade</th>                                         
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for(var i=0; i<data.length; i++) {%>
+                        <% if(data[i].Mark1>=90) {%>
+                      <tr>
+                        <td><%=data[i].SID%></td>
+                        <td><%=data[i].FiName%> <%=data[i].LaName%></td>                      
+                        <td><%=data[i].Mark1%></td>  
+                        <td>S</td>                              
+                      </tr>
+                      <% passCount++; %>
+                      <% s1++; %>
+                      <% } %>
+                     
+                     
+                      <% if(data[i].Mark1>=80 && data[i].Mark1<90) {%>
+                        <tr>
+                          <td><%=data[i].SID%></td>
+                          <td><%=data[i].FiName%> <%=data[i].LaName%></td>                       
+                          <td><%=data[i].Mark1%></td>  
+                          <td>A</td>                              
+                        </tr>
+                        <% passCount++; %>
+                        <% s2++; %>
+                        <% } %>
+                       
+                        <% if(data[i].Mark1>=70  && data[i].Mark1<80) {%>
+                            <tr>
+                              <td><%=data[i].SID%></td>
+                              <td><%=data[i].FiName%> <%=data[i].LaName%></td>                         
+                              <td><%=data[i].Mark1%></td>  
+                              <td>B</td>                              
+                            </tr>
+                            <% passCount++; %>
+                            <% s3++; %>
+                            <% } %>
+                            <% if(data[i].Mark1>=60  && data[i].Mark1<70) {%>
+                                <tr>
+                                  <td><%=data[i].SID%></td>
+                                  <td><%=data[i].FiName%> <%=data[i].LaName%></td>                     
+                                  <td><%=data[i].Mark1%></td>  
+                                  <td>C</td>                              
+                                </tr>
+                                <% passCount++; %>
+                                <% s4++; %>
+                                <% } %>
+                                <% if(data[i].Mark1>=45  && data[i].Mark1<60) {%>
+                                    <tr>
+                                      <td><%=data[i].SID%></td>
+                                      <td><%=data[i].FiName%> <%=data[i].LaName%></td>                         
+                                      <td><%=data[i].Mark1%></td>  
+                                      <td>D</td>                              
+                                    </tr>
+                                    <% passCount++; %>
+                                    <% s5++; %>
+                                    <% } %>
+                    
+                                        <% if(data[i].Mark1<45) {%>
+                                            <tr>
+                                              <td><%=data[i].SID%></td>
+                                              <td><%=data[i].FiName%> <%=data[i].LaName%></td>                       
+                                              <td><%=data[i].Mark1%></td>  
+                                              <td>F</td>                              
+                                            </tr>
+                                           
+                                            <% failCount++; %>
+                                           
+                                            <% s6++; %>
+                                            
+
+                                            <% } %>
+                            <% totalCount++; %>
+                      <% } %>
+<input type="hidden" id="s1Value" value="<%= s1 %>">
+<input type="hidden" id="s2Value" value="<%= s2 %>">
+<input type="hidden" id="s3Value" value="<%= s3 %>">
+<input type="hidden" id="s4Value" value="<%= s4 %>">
+<input type="hidden" id="s5Value" value="<%= s5 %>">
+<input type="hidden" id="s6Value" value="<%= s6 %>">
+
+                      
+                    </tbody>
+                  </table>    
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+                
+
+               
+
+
+                  <div class="ar"> 
+                    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                    <script>
+  
+                      var s1 = parseInt(document.getElementById("s1Value").value);
+                      var s2 = parseInt(document.getElementById("s2Value").value);
+                      var s3 = parseInt(document.getElementById("s3Value").value);
+                      var s4 = parseInt(document.getElementById("s4Value").value);
+                      var s5 = parseInt(document.getElementById("s5Value").value);
+                      var s6 = parseInt(document.getElementById("s6Value").value);
+                  
+                      var xValues = ["S", "A", "B", "C", "D", "F"];
+                      var yValues = [s1, s2, s3, s4, s5, s6,];
+                      var barColors = [
+                        "#b91d47",
+                        "#00aba9",
+                        "#2b5797",
+                        "#e8c3b9",
+                        "#1e7145",
+                        "#3e1111",
+                        
+                          ];
+  
+                      new Chart("myChart", {
+                        type: "pie",
+                        data: {
+                          labels: xValues,
+                          datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                          }]
+                        },
+                        options: {
+                          title: {
+                            display: true,
+                            text: "Grade distribution"
+                          }
+                        }
+                      });
+                      </script>
+                  </div>
+                </div>
+    
+             
+            </section>
+          
+           
+              <% var passPercentage = (passCount / totalCount) * 100; %>
+           
+              <section id="main"style="margin-bottom: 150px;">
+                <div class = "left d">
+
+
+                  <p>Pass Percentage: <%= passPercentage.toFixed(2) %></p>
+                        <p>Total Students: <%= totalCount%></p> 
+                        <p>Students Passed: <%= passCount%></p>  
+                        <p>Students Failed: <%= failCount%></p>                     
+                      </tr>
+
+                    
+                  </div>
+                  <input type="hidden" id="p1Value" value="<%= totalCount %>">
+                  <input type="hidden" id="p2Value" value="<%= passCount %>">
+                  <input type="hidden" id="p3Value" value="<%= failCount %>">
+                      <% } %>
+
+
+                      <canvas id="myChart1" style="width:100%;max-width:600px"></canvas>
+        <div class="right d" style="margin-left: 20px;">
+
+    <script>
+      var p1 = parseInt(document.getElementById("p1Value").value);
+      var p2 = parseInt(document.getElementById("p2Value").value);
+      var p3 = parseInt(document.getElementById("p3Value").value);
+      var xValues = ["Total Students", "Students Passed", "Students Failed"];
+      var yValues = [p1,p2,p3];
+      var barColors = "blue";
+      
+      new Chart("myChart1", {
+        type: "bar",
+        data: {
+          labels: xValues,
+          datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+          }]
+        },
+        options: {
+          title: {
+      display: true,
+      text: "Pass/Fail"
+    },
+          legend: {display: false},
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
+              }
+            }],
+          }
+        }
+      });
+      </script>
+      
+
+ 
+</div>
+</section>
+<input type="hidden" id="tValue" value="<%= totalCount %>">
+
+<canvas id="myChart2" style="width:100%;max-width:1000px;margin-left:250px;"></canvas>
+
+<section id="main">
+  <div class = "left d">
+<script>
+ document.addEventListener("DOMContentLoaded", function() {
+  var data = JSON.parse('<%- JSON.stringify(data) %>');
+  var t = parseInt(document.getElementById("tValue").value);
+  var xyValues = [];
+
+  for (var i = 0; i < data.length; i++) {
+    var j = i;
+    xyValues.push({ x: j, y: data[i].Mark1 });
+  }
+
+  new Chart("myChart2", {
+    type: "scatter",
+    data: {
+      datasets: [{
+        pointRadius: 4,
+        pointBackgroundColor: "rgb(0, 0, 255)",
+        data: xyValues
+      }]
+    },
+    options: {
+      title: {
+      display: true,
+      text: "Mark distribution"
+    },
+      legend: { display: false },
+      scales: {
+        x: {
+          ticks: { min: 0, max: t}
+        },
+        y: {
+          ticks: { min: 0, max: 100 }
+        }
+      }
+    }
+  });
+});
+  </script>
+   
+</div>
+</section>
+                                
+    <% } %>
+                         
+      <footer class="section-p1">
+          <div class="col">
+              <img class="logo" src="img/logo.png" alt="">
+              <h4>Contact</h4>
+              <p><strong>Address :</strong> Saint Gits, Thiruvalla, Kerala</p>
+              <p><strong>Phone :</strong> +91 96050 97334</p>
+              <p><strong>Hours :</strong>10:00 - 18:00, Mon - Sat</p>
+              <div class="follow">
+                  <h4>Follow Us</h4>
+                  <div class="icon">
+                      <i class="fab fa-facebook"></i>
+                      <i class="fab fa-twitter"></i>
+                      <i class="fab fa-instagram"></i>
+                      <i class="fab fa-pinterest"></i>
+                      <i class="fab fa-youtube"></i>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col">
+              <h4>About</h4>
+              <a href="#">About Us</a>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms & Conditions</a>
+              <a href="#">Contact Us</a>
+              <a href="#">Help</a>
+          </div>
+
+          <div class="copyright">
+              <p>© 2022, Saint Gits - Project</p>
+          </div>
+      </footer>
+
+      <script>
+
+      </script>
+
+  </body>
+
+</html>

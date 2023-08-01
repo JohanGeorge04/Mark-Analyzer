@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <link rel="stylesheet" href="style.css">
+    <title>Course Details</title>
+</head>
+
+<body>
+    <section id="header">
+        <a href="/"><img src="logo2.png" alt="Logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="course">Course Details</a></li>
+                <li><a href="courseselect">Assessment Marks</a></li>
+                <li><a  class="active" href="fresult">Publish Result</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="sidenav">
+            <a href="/courseselect">Assessment Result</a>
+            <a href="/umarks">Update Marks</a>
+        </div>
+        <section class="same">
+            <div class="bod">
+                <div class="r">
+                    <h2>Update Marks</h2>
+                    <form action="/umarksb" method="post">
+                        <label for="course_id">Enter Course:</label>
+                        <input type="text" name="course_id" required><br>
+                        <label for="student_id">Enter Student_ID:</label>
+                        <input type="text" name="student_id" required>
+                        <label for="assessment">Select Assessment:</label>
+                        <select name="assesment">
+                            <option value="Mark1">Assessment 1</option>
+                            <option value="Mark2">Assessment 2</option>
+                            <option value="Mark3">Assessment 3</option>
+                            <option value="Mark4">Assessment 4</option>
+                        </select>
+                        <label for="integerInput">Enter Marks:</label>
+                        <input type="text" id="integerInput" name="integerInput">
+                        <br>
+                        <button onclick="processInput()">Submit</button>
+
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        function processInput() {
+            // Get the input value from the text field
+            const inputField = document.getElementById("integerInput");
+            const inputValue = parseInt(inputField.value);
+
+            // Check if the input is a valid integer
+            if (isNaN(inputValue)) {
+                alert("Please enter a valid integer.");
+            } else {
+                // You can now use the 'inputValue' variable, which contains the integer value
+                // For example, you can send it to the server or perform any other operations
+                console.log("Input Value:", inputValue);
+            }
+        }
+    </script>
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="img/logo.png" alt="Logo">
+            <h4>Contact</h4>
+            <p><strong>Address :</strong> SaintGits, Thiruvalla, Kerala</p>
+            <p><strong>Phone :</strong> +91 96050 97334</p>
+            <p><strong>Hours :</strong> 10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Help</a>
+        </div>
+
+        <div class="copyright">
+            <p>© 2022, SaintGits - Project</p>
+        </div>
+    </footer>
+</body>
+</html>

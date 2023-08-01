@@ -1,0 +1,133 @@
+
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Main Page</title>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+    
+    <body>
+
+        <section id="header">
+            <a href="/"><img src="logo2.png"></a>
+
+            <div>
+                <ul id="navbar">
+                   
+                    <% if(faculty){ %>
+                    <% if(user){ %>
+                      <li><a  readonly href="/">Dashboard</a></li>
+                        <li><a href="course">Course Details</a></li>
+                        <li><a class="active" href="courseselect">Assesment Marks</a></li>
+                    <li><a href="fresult">Publish Result</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <li><a readonly><%= user.FName %></a></li>
+                        <% }else{ %>
+                          <li><a href="login">Student Sign-In</a></li>
+                          <li><a href="flogin">Faculty Sign-In</a></li>
+                        <% } %>
+                        <% } %>
+                       
+                </ul>
+            </div>           
+        </section>      
+        <% if(faculty){ %>
+        <% if(user){ %>         
+          
+                  <section id="ass">
+                    <div class = "assesment">
+                      <div class='r'>
+                        <h2>Marks list</h2>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Name</th>                          
+                          <th>Mark1</th>                         
+                          <th>Mark2</th>                         
+                          <th>Mark3</th>                        
+                          <th>Mark4</th>                      
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for(var i=0; i<data.length; i++) {%>
+                        <tr>
+                          <td><%=data[i].SID%></td>
+                          <td><%=data[i].FiName%> <%=data[i].LaName%></td>                          
+                          <td><%=data[i].Mark1%></td>                         
+                          <td><%=data[i].Mark2%></td>                         
+                          <td><%=data[i].Mark3%></td>                        
+                          <td><%=data[i].Mark4%></td>      
+                        </tr>
+                        <% } %>
+                      </tbody>
+                    </table>    
+                  </div>
+                </div>
+              </section>
+                    <% } %>
+                    <% } %>
+      
+                    <section id="main" class="section-p1">
+            <div class="button">
+              
+              <form action="/submit3" method="post">
+              
+                <button type="submit">Analyse Result</button>
+              </form>
+            </div>
+            <div class="rightd" style="margin-left:500px">
+
+              <form action="/predictb" method="post">
+              
+                <button type="submit">Predict Mark</button>
+              </form>
+            </div>
+            </div>
+        </section>
+       
+        <footer class="section-p1">
+            <div class="col">
+                <img class="logo" src="img/logo.png" alt="">
+                <h4>Contact</h4>
+                <p><strong>Address :</strong> Saint Gits, Thiruvalla, Kerala</p>
+                <p><strong>Phone :</strong> +91 96050 97334</p>
+                <p><strong>Hours :</strong>10:00 - 18:00, Mon - Sat</p>
+                <div class="follow">
+                    <h4>Follow Us</h4>
+                    <div class="icon">
+                        <i class="fab fa-facebook"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-pinterest"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <h4>About</h4>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Help</a>
+            </div>
+
+            <div class="copyright">
+                <p>© 2022, Saint Gits - Project</p>
+            </div>
+        </footer>
+
+        <script>
+
+        </script>
+
+    </body>
+
+</html>
