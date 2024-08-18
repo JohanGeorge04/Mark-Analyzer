@@ -1,1 +1,2 @@
-# A simple web app where you can add and analyze student marks.
+# About
+A simple web app where you can add and analyze student marks.
